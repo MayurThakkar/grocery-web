@@ -15,5 +15,8 @@
     "src/polyfills.ts",
     "src/main.ts",
     "src/polyfills.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "enableIvy": false
+  }
 }
