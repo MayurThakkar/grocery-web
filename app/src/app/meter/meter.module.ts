@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { MatTableModule } from "@angular/material/table";
 import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
 import { MeterlistComponent } from './feature/meter-list/meterlist.component';
@@ -14,6 +15,7 @@ import { meterReducer } from './state/meter.reducer';
     imports: [
         SharedModule,
         StoreModule.forFeature('meterdata', meterReducer),
+        MatTableModule,
         MeterRoutingModule
     ]
 })
