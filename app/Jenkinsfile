@@ -25,6 +25,7 @@ pipeline {
     stage('Build') {
       steps { 
           sh 'ls && cd app && pwd && ls'
+          sh 'less package.json'
           sh 'npm run build' 
         }
     }
