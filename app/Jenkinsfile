@@ -8,6 +8,7 @@ pipeline {
       steps {
           sh 'ls && cd app && pwd && ls'
           sh 'npm install'
+          sh 'sudo chown -R 108:114 "/.npm"'
           sh 'npm install -g @angular/cli'
         }
     }
