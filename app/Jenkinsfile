@@ -24,8 +24,7 @@ pipeline {
     stage('Build') {
       steps { 
           sh 'ls && cd app && pwd && ls'
-          sh 'npm run build'
-      }
+          sh 'npm run-script build' }
     }
   }
 }
