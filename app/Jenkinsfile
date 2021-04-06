@@ -22,7 +22,10 @@ pipeline {
     // }
 
     stage('Build') {
-      steps { sh 'npm run build' }
+      steps { 
+          sh 'ls && cd app && pwd && ls'
+          sh 'npm run build'
+      }
     }
   }
 }
