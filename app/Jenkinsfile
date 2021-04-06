@@ -1,12 +1,14 @@
-
 pipeline {
   agent {
-    docker { image 'node:latest' }
+    docker { image 'nodejs:latest' }
   }
   stages {
     stage('Install') {
       steps {
+          sh 'git checkout master'
+          sh 'npm --version'
           sh 'ls && cd app && pwd && ls'
+          sh 'npm uninstall *'
           sh 'npm install'
         }
     }
@@ -23,9 +25,9 @@ pipeline {
     // }
 
     stage('Build') {
-      steps { 
-          sh 'ls && cd app && pwd && ls'
-          sh 'npm run build' 
+      steps {
+          sh 'npm install @angular/cli@latest'
+          sh 'cd app && pwd && ls && npm run-script build' 
         }
     }
   }
