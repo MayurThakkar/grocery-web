@@ -5,7 +5,9 @@ pipeline {
   }
   stages {
     stage('Install') {
-      steps { sh 'npm install' }
+      steps {
+          sh 'ls && cd app && pwd && ls'
+          sh 'npm install' }
     }
 
     // stage('Test') {
@@ -20,7 +22,9 @@ pipeline {
     // }
 
     stage('Build') {
-      steps { sh 'npm run-script build' }
+      steps { 
+          sh 'ls && cd app && pwd && ls'
+          sh 'npm run-script build' }
     }
   }
 }
