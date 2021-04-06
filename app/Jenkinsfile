@@ -8,6 +8,7 @@ pipeline {
       steps {
           sh 'ls && cd app && pwd && ls'
           sh 'npm install'
+          sh 'npm install -g @angular/cli'
         }
     }
 
@@ -26,7 +27,8 @@ pipeline {
       steps { 
           sh 'ls && cd app && pwd && ls'
         //   sh 'node_modules/@angular/cli/bin/ng build'
-          sh 'ng build' }
+          sh 'npm run build' 
+        }
     }
   }
 }
