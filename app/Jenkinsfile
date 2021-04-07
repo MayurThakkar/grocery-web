@@ -1,13 +1,17 @@
-
 pipeline {
   agent {
     docker { image 'node:latest' }
   }
   stages {
+    stage('Prepare Node and NPM') { // confirm nodejs plugin and setting
+    steps {
+          sh 'npm --version'
+      } 
+   }
     stage('Install') {
       steps {
-          sh 'ls && cd app && pwd && ls'
-          sh 'npm install'
+            sh "rm -rf node_modules || true"
+            sh 'cd app && npm cache clean --force && npm install'
         }
     }
 
@@ -23,9 +27,9 @@ pipeline {
     // }
 
     stage('Build') {
-      steps { 
-          sh 'ls && cd app && pwd && ls'
-          sh 'npm run start' 
+      steps {
+            echo 'Start Building'
+            sh 'cd app && npm run ng build --prod' 
         }
     }
   }
