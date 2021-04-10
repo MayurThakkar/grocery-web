@@ -1,14 +1,18 @@
 pipeline {
-  agent {
-    docker { image 'node:12.18.1' }
-  }
-  environment {
-        HOME = '.'
-    }
+  agent any
   stages {
-    stage('Install') {
+    stage('Install & build') {
+      agent {
+        docker { image 'node:12.18.1' }
+      }
+      environment {
+            HOME = '.'
+      }
       steps {
             sh 'cd app && rm -rf package-lock.json && npm cache clean --force && npm install'
+            echo 'Start Building'
+            sh 'cd app && npm run ng build'
+            sh 'pwd && ls'
         }
     }
 
@@ -23,17 +27,10 @@ pipeline {
     //   }
     // }
 
-    stage('Build') {
-      steps {
-            echo 'Start Building'
-            sh 'cd app && npm run ng build'
-            sh 'pwd && ls'
-        }
-    }
     stage('Docker build') {
       steps {
         echo 'Start docker build'
-        sh 'cd app && docker image build .'
+        sh 'cd app && docker build .'
       }
     }
   }
