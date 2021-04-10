@@ -27,10 +27,17 @@ pipeline {
     //   }
     // }
 
-    stage('Docker build') {
+    stage('Docker image build') {
       steps {
         echo 'Start docker build'
         sh 'cd app && docker build .'
+      }
+    }
+    stage('Docker image push') {
+      steps {
+        echo 'Start docker image push'
+        sh 'docker tag nginx mayurthakkar/grocery'
+        sh 'docker push mayurthakkar/grocery:latest'
       }
     }
   }
