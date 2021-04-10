@@ -6,12 +6,6 @@ pipeline {
         HOME = '.'
     }
   stages {
-    // stage('Clone') {
-    //         steps {
-    //             git branch: 'angular_11',
-    //                 url: 'https://github.com/MayurThakkar/grocery-web.git'
-    //         }
-    //     }
     stage('Install') {
       steps {
             sh 'cd app && rm -rf package-lock.json && npm cache clean --force && npm install'
