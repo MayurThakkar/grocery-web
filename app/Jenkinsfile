@@ -26,7 +26,8 @@ pipeline {
     stage('Build') {
       steps {
             echo 'Start Building'
-            sh 'cd app && npm run ng build' 
+            sh 'cd app && npm run ng build'
+            sh 'pwd && ls'
         }
     }
   }
