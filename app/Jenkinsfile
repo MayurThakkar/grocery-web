@@ -30,5 +30,11 @@ pipeline {
             sh 'pwd && ls'
         }
     }
+    stage('Docker build') {
+      steps {
+        echo 'Start docker build'
+        sh 'cd app && docker image build .'
+      }
+    }
   }
 }
