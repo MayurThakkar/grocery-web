@@ -12,6 +12,8 @@ pipeline {
             echo 'Start Building'
             sh 'cd app && npm run ng build'
             sh 'pwd && ls'
+            echo 'Start docker build'
+            sh 'cd app && docker build .'
         }
     }
 
@@ -28,8 +30,8 @@ pipeline {
 
     stage('Docker image build') {
       steps {
-        echo 'Start docker build'
-        sh 'cd app && ls && pwd && docker build .'
+        // echo 'Start docker build'
+        // sh 'cd app && ls && pwd && docker build .'
       }
     }
     stage('Docker image push') {
