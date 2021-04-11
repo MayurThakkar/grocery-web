@@ -1,6 +1,6 @@
 pipeline {
   agent {
-        docker { image 'herbysk/node-with-docker-clients' }
+        docker { image 'herbysk/node-with-docker-clients:lts-slim-19.03.14' }
       }
       environment {
             HOME = '.'
@@ -14,6 +14,7 @@ pipeline {
             sh 'cd app && npm run ng build'
             sh 'pwd && ls'
             // echo 'Start docker build'
+
             // sh 'cd app && docker build .'
         }
     }
