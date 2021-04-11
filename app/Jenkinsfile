@@ -1,11 +1,14 @@
 pipeline {
   agent { dockerfile true }
+  environment {
+            HOME = '.'
+      }
   stages {
     stage('Install & build') { 
       
       steps {
-            // sh 'cd app && rm -rf package-lock.json && npm cache clean --force && npm install'
-            sh 'cd app && rm -rf package-lock.json && sudo chown -R 108:114 "/.npm" && sudo npm install'
+            sh 'cd app && rm -rf package-lock.json && npm cache clean --force && npm install'
+            // sh 'cd app && rm -rf package-lock.json && sudo chown -R 108:114 "/.npm" && sudo npm install'
             echo 'Start Building'
             sh 'cd app && npm run ng build'
             sh 'pwd && ls'
