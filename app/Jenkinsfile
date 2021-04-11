@@ -29,7 +29,7 @@ pipeline {
     stage('Docker image build') {
       steps {
         echo 'Start docker build'
-        sh 'cd app && docker build .'
+        sh 'cd app && ls && pwd && docker build .'
       }
     }
     stage('Docker image push') {
