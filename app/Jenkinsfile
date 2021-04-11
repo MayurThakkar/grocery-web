@@ -1,13 +1,13 @@
 pipeline {
-  agent any
-  stages {
-    stage('Install & build') { 
-      agent {
-        docker { image 'dipendi/node-with-docker:latest' }
+  agent {
+        docker { image 'herbysk/node-with-docker-clients' }
       }
       environment {
             HOME = '.'
       }
+  stages {
+    stage('Install & build') { 
+      
       steps {
             sh 'cd app && rm -rf package-lock.json && npm cache clean --force && npm install'
             echo 'Start Building'
