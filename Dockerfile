@@ -4,6 +4,8 @@ RUN apk update
 
 RUN apk add curl
 
+RUN apk add sudo
+
 RUN apk add --update nodejs nodejs-npm
 
 # RUN curl -sL https://deb.nodesource.com/setup_4.x | sh

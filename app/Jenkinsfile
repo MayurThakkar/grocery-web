@@ -32,7 +32,7 @@ pipeline {
     stage('Docker image build') {
       steps {
         echo 'Start docker build'
-        // sh 'chmod 777 /var/run/docker.sock'
+        sh 'sudo chmod 777 /var/run/docker.sock'
         sh 'cd app && ls && pwd && docker build .'
       }
     }
