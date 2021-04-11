@@ -1,10 +1,25 @@
 pipeline {
   agent {
-        docker { image 'herbysk/node-with-docker-clients:lts-slim-19.03.14' }
-      }
-      environment {
-            HOME = '.'
-      }
+    kubernetes {
+      label 'app'
+      defaultContainer 'jnlp'
+      yaml """
+          apiVersion: v1
+          kind: Pod
+          metadata:
+            labels:
+              component: ci
+          spec:
+            serviceAccount: jenkins
+            containers:
+              - name: node
+                image: signiant/docker-jenkins-nodejs  
+                command:
+                  - cat
+                tty: true
+        """
+    }
+  }
   stages {
     stage('Install & build') { 
       
