@@ -12,9 +12,7 @@ pipeline {
           sh 'cd app && npm run ng build'
           sh 'pwd && ls'
         }
-    }
-
-    // stage('Test') {
+            // stage('Test') {
     //   parallel {
     //     stage('Static code analysis') {
     //         steps { sh 'npm run-script lint' }
@@ -24,6 +22,7 @@ pipeline {
         // }
     //   }
     // }
+    }
 
     stage('Docker image build') {
       steps {
