@@ -7,7 +7,7 @@ import { AuthService } from '@src/app/auth/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private _loading: Subscription;
@@ -15,13 +15,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private _authService: AuthService,
-    private _uiService: UIService,
-  ) { }
+    private _uiService: UIService
+  ) {}
 
   ngOnInit(): void {
-    this._loading = this._uiService.loadingStateChanged.subscribe((isLoading) => {
-      this.isLoading = isLoading;
-    });
+    this._loading = this._uiService.loadingStateChanged.subscribe(
+      (isLoading) => {
+        this.isLoading = isLoading;
+      }
+    );
   }
 
   ngOnDestroy() {
@@ -33,7 +35,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmit(forms: NgForm) {
     this._authService.login({
       email: forms.value.email,
-      password: forms.value.password
-    })
+      password: forms.value.password,
+    });
   }
 }

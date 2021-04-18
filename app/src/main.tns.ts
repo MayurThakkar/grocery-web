@@ -7,7 +7,7 @@ import { AppModule } from '@src/app/app.module';
 import { environment } from '@src/environments/environment';
 
 if (environment.production) {
-    enableProdMode();
+  enableProdMode();
 }
 
 // A traditional NativeScript application starts by initializing global objects,

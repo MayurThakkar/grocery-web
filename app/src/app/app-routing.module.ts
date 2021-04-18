@@ -7,14 +7,15 @@ const routes: Routes = [
   { path: '', component: MainComponent, canActivate: [AuthGuard] },
   {
     path: 'meter',
-    loadChildren: () => import('./meter/meter.module').then(m => m.MeterModule),
-    canLoad: [AuthGuard]
-  }
+    loadChildren: () =>
+      import('./meter/meter.module').then((m) => m.MeterModule),
+    canLoad: [AuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard]
+  providers: [AuthGuard],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

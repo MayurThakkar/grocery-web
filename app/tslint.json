@@ -1,7 +1,8 @@
 {
   "extends": [
     "tslint:recommended",
-    "@nativescript/tslint-rules"
+    "@nativescript/tslint-rules",
+    "tslint-config-prettier"
   ],
   "rules": {
     "align": {

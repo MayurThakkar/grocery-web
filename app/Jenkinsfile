@@ -4,36 +4,35 @@ pipeline {
             HOME = '.'
       }
   stages {
-    stage('Install & build') { 
-      
+    stage('Run prettier') {
       steps {
-            sh 'cd app && rm -rf package-lock.json && npm cache clean --force && npm install'
-            // sh 'cd app && rm -rf package-lock.json && sudo chown -R 108:114 "/.npm" && sudo npm install'
-            echo 'Start Building'
-            sh 'cd app && npm run ng build'
-            sh 'pwd && ls'
-            // echo 'Start docker build'
-
-            // sh 'cd app && docker build .'
-        }
+        echo 'Start prettier'
+        sh 'cd app && npm run format'
+      }
     }
-
-    // stage('Test') {
+    stage('Install & build') {      
+      steps {
+          sh 'cd app && rm -rf package-lock.json && npm cache clean --force && npm install'
+          echo 'Start Building'
+          sh 'cd app && npm run ng build'
+          sh 'pwd && ls'
+        }
+            // stage('Test') {
     //   parallel {
     //     stage('Static code analysis') {
     //         steps { sh 'npm run-script lint' }
     //     }
     //     stage('Unit tests') {
     //         steps { sh 'npm run-script test' }
-    //     }
+        // }
     //   }
     // }
+    }
 
     stage('Docker image build') {
       steps {
         echo 'Start docker build'
-        sh 'sudo chmod 777 /var/run/docker.sock'
-        sh 'cd app && ls && pwd && docker build .'
+        sh 'cd app && pwd && ls && docker build .'
       }
     }
     stage('Docker image push') {

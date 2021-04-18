@@ -8,9 +8,8 @@ describe('MeterlistComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MeterlistComponent ]
-    })
-    .compileComponents();
+      declarations: [MeterlistComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
