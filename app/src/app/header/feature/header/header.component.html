@@ -22,18 +22,18 @@
           </button>
         </mat-menu>
         <div fxLayoutGap="10px" fxHide.xs>
-          <a *ngIf="!(isAuth$ | async)" routerLink="/login">{{
+          <button mat-raised-button class="router-button" *ngIf="!(isAuth$ | async)" routerLink="/login" routerLinkActive="active">{{
             'app.login' | translate
-          }}</a>
-          <a *ngIf="!(isAuth$ | async)" routerLink="/signup">{{
+          }}</button>
+          <button mat-raised-button class="router-button" *ngIf="!(isAuth$ | async)" routerLink="/signup" routerLinkActive="active">{{
             'app.signup' | translate
-          }}</a>
-          <a *ngIf="isAuth$ | async" routerLink="/meter">{{
+          }}</button>
+          <button mat-raised-button class="router-button" *ngIf="isAuth$ | async" routerLink="/meter" routerLinkActive="active">{{
             'app.meter' | translate
-          }}</a>
-          <a *ngIf="isAuth$ | async" (click)="onLogout()">{{
+          }}</button>
+          <button mat-raised-button class="router-button" *ngIf="isAuth$ | async" (click)="onLogout()" routerLinkActive="active">{{
             'app.logout' | translate
-          }}</a>
+          }}</button>
         </div>
         <button mat-icon-button (click)="sidenav.toggle()" fxHide.gt-xs>
           <mat-icon>menu</mat-icon>
