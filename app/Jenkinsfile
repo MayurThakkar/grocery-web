@@ -4,8 +4,13 @@ pipeline {
             HOME = '.'
       }
   stages {
-    stage('Install & build') { 
-      
+    stage('Run prettier') {
+      steps {
+        echo 'Start prettier'
+        sh 'cd app && npm run format'
+      }
+    }
+    stage('Install & build') {      
       steps {
           sh 'cd app && rm -rf package-lock.json && npm cache clean --force && npm install'
           echo 'Start Building'
