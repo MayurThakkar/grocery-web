@@ -25,3 +25,13 @@ a:active {
   align-items: center;
   justify-content: center;
 }
+
+.router-button {
+  background-color: #669999;
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  &.active {
+    filter: brightness(120%);
+  }
+}
