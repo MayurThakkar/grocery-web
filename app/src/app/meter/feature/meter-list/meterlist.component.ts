@@ -7,8 +7,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 
-
-import * as fromMeter from '../../state/meter.reducer'
+import * as fromMeter from '../../state/meter.reducer';
 
 import { MeterList } from '../../meter-list.model';
 import { MeterService } from '../../meter.service';
@@ -19,27 +18,29 @@ import { MeterService } from '../../meter.service';
   styleUrls: ['./meterlist.component.scss'],
 })
 export class MeterlistComponent implements OnInit, AfterViewInit {
-
   displayedColumns = ['active', 'location', 'name', 'active1', 'delete'];
   dataSource = new MatTableDataSource<MeterList>();
 
   item$: Observable<MeterList[]>;
 
   expandedElement: MeterList;
-  
+
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private store: Store<fromMeter.MeterDataState>,
-    private meterService: MeterService,
-    ) {}
+  constructor(
+    private store: Store<fromMeter.MeterDataState>,
+    private meterService: MeterService
+  ) {}
 
   ngOnInit() {
     this.meterService.getMeterList();
 
-    this.store.select(fromMeter.getMeterData).subscribe((meterData: MeterList[]) => {
-      this.dataSource.data = meterData;
-    });
+    this.store
+      .select(fromMeter.getMeterData)
+      .subscribe((meterData: MeterList[]) => {
+        this.dataSource.data = meterData;
+      });
   }
 
   ngAfterViewInit() {
@@ -53,22 +54,21 @@ export class MeterlistComponent implements OnInit, AfterViewInit {
 
   updateActive(element, enable: boolean) {
     if (_.isNil(element)) {
-      element = {}
+      element = {};
     }
     element.active = enable;
     this.meterService.updateData({
       id: element.id,
-      active: enable
+      active: enable,
     });
   }
 
   updateActive1(element, enable: boolean) {
-
-    console.error("element", element);
+    console.error('element', element);
 
     this.meterService.updateData({
       id: element.id,
-      active: enable
+      active: enable,
     });
   }
 
@@ -78,12 +78,12 @@ export class MeterlistComponent implements OnInit, AfterViewInit {
       location: 'baden-wurtternberg',
       active: true,
       active1: true,
-    }
+    };
     this.meterService.addNewMeterData(newData);
   }
 
   delete(data: MeterList) {
-    console.error("delete", data);
+    console.error('delete', data);
     this.meterService.deleteMeterData(data);
   }
 }

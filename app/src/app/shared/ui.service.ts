@@ -4,11 +4,11 @@ import { Subject } from 'rxjs';
 
 @Injectable()
 export class UIService {
-    loadingStateChanged = new Subject<boolean>();
+  loadingStateChanged = new Subject<boolean>();
 
-    constructor(private _snackBar: MatSnackBar){}
+  constructor(private _snackBar: MatSnackBar) {}
 
-    showSnackBar(message: string, action, duration) {
-        this._snackBar.open(message, action, duration);
-    }
+  showSnackBar(message: string, action, duration) {
+    this._snackBar.open(message, action, duration);
+  }
 }

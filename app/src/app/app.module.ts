@@ -6,20 +6,20 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
-import { FlexLayoutModule } from '@angular/flex-layout'
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {
   MissingTranslationHandler,
-  MissingTranslationHandlerParams
+  MissingTranslationHandlerParams,
 } from '@ngx-translate/core';
 
 import { environment } from '@src/environments/environment';
 
 import { AppRoutingModule } from '@src/app/app-routing.module';
-import { MaterialModule } from '@src/app/material.module'
+import { MaterialModule } from '@src/app/material.module';
 import { AuthModule } from '@src/app/auth/auth.module';
 
 import { reducers } from '@src/app/app.reducer';
@@ -38,18 +38,13 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 export class MyMissingTranslationHandler implements MissingTranslationHandler {
-    handle(params: MissingTranslationHandlerParams) {
-        return 'some value';
-    }
+  handle(params: MissingTranslationHandlerParams) {
+    return 'some value';
+  }
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DialogComponent,
-    HeaderComponent,
-    MainComponent,
-  ],
+  declarations: [AppComponent, DialogComponent, HeaderComponent, MainComponent],
   imports: [
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -66,18 +61,17 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
+        deps: [HttpClient],
       },
       defaultLanguage: 'en',
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler},
-      useDefaultLang: true
+      missingTranslationHandler: {
+        provide: MissingTranslationHandler,
+        useClass: MyMissingTranslationHandler,
+      },
+      useDefaultLang: true,
     }),
   ],
-  providers: [
-    MeterService,
-    AuthService,
-    UIService,
-  ],
-  bootstrap: [AppComponent]
+  providers: [MeterService, AuthService, UIService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

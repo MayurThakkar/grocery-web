@@ -4,12 +4,12 @@ export const SET_AUTHENTICATED = '[Auth] Set Authenticated';
 export const SET_UNAUTHENTICATED = '[Auth] Set UnAuthenticated';
 
 export class SetAuthenticated implements Action {
-    readonly type = SET_AUTHENTICATED;
-    constructor(public payload: string) {}
+  readonly type = SET_AUTHENTICATED;
+  constructor(public payload: string) {}
 }
 
 export class SetUnAuthenticated implements Action {
-    readonly type = SET_UNAUTHENTICATED;
+  readonly type = SET_UNAUTHENTICATED;
 }
 
 export type AuthActions = SetAuthenticated | SetUnAuthenticated;

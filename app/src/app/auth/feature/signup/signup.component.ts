@@ -7,25 +7,26 @@ import { AuthService } from '@src/app/auth/auth.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit, OnDestroy {
   private _loading: Subscription;
   isLoading = false;
   maxDate: Date;
-  
 
   constructor(
     private _authService: AuthService,
-    private _uiService: UIService,
-  ) { }
+    private _uiService: UIService
+  ) {}
 
   ngOnInit(): void {
     this.maxDate = new Date();
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
-    this._loading = this._uiService.loadingStateChanged.subscribe((isLoading) => {
-      this.isLoading = isLoading;
-    });
+    this._loading = this._uiService.loadingStateChanged.subscribe(
+      (isLoading) => {
+        this.isLoading = isLoading;
+      }
+    );
   }
 
   ngOnDestroy() {
@@ -38,7 +39,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     console.error(forms);
     this._authService.resgisterUser({
       email: forms.value.email,
-      password: forms.value.password
-    })
+      password: forms.value.password,
+    });
   }
 }

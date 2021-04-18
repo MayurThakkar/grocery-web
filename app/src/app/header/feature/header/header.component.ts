@@ -8,10 +8,9 @@ import { AuthService } from '@src/app/auth/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
   isAuth$: Observable<boolean>;
   userName$: Observable<string>;
 
@@ -20,12 +19,12 @@ export class HeaderComponent implements OnInit {
     private _authService: AuthService,
     private _store: Store<fromRoot.State>
   ) {
-      // this language will be used as a fallback when a translation isn't found in the current language
-      _translate.setDefaultLang('en');
+    // this language will be used as a fallback when a translation isn't found in the current language
+    _translate.setDefaultLang('en');
 
-      // the lang to use, if the lang isn't available, it will use the current loader to get them
-      _translate.use('en');
-   }
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    _translate.use('en');
+  }
 
   ngOnInit(): void {
     this.userName$ = this._store.select(fromRoot.getUser);
@@ -35,7 +34,7 @@ export class HeaderComponent implements OnInit {
   languages = [
     { value: 'en', label: 'app.language.en' },
     { value: 'de', label: 'app.language.de' },
-  ]
+  ];
 
   selectLanguage(lang: string) {
     this._translate.use(lang);
