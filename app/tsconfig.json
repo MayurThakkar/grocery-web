@@ -9,6 +9,8 @@
     "experimentalDecorators": true,
     "module": "es2020",
     "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "importHelpers": true,
     "target": "es2015",
     "lib": [

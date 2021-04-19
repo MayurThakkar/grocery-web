@@ -8,14 +8,12 @@ import { AuthData } from './auth-data.model';
 import * as Auth from './auth-state/auth.actions';
 import * as fromRoot from '../app.reducer';
 import { UIService } from '../shared/ui.service';
-import { MeterService } from '../meter/meter.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private _router: Router,
     private _ngAuth: AngularFireAuth,
-    private _meterService: MeterService,
     private _store: Store<fromRoot.State>,
     private _uiService: UIService
   ) {}
