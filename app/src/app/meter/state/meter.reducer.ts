@@ -1,5 +1,4 @@
-import { createFeatureSelector, createSelector, Store } from '@ngrx/store';
-import { from } from 'rxjs';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromApp from '../../app.reducer';
 import {
