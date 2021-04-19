@@ -7,9 +7,6 @@ import { MainComponent } from './feature/main.component';
 
 @NgModule({
   declarations: [MainComponent],
-  imports: [SharedModule,
-    MatButtonModule,
-    MatCardModule,
-    MatIconModule,],
+  imports: [SharedModule, MatButtonModule, MatCardModule, MatIconModule],
 })
 export class MainModule {}

@@ -19,17 +19,17 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 
 export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http);
+}
+
+export class MyMissingTranslationHandler implements MissingTranslationHandler {
+  handle(params: MissingTranslationHandlerParams) {
+    return 'some value';
   }
-  
-  export class MyMissingTranslationHandler implements MissingTranslationHandler {
-    handle(params: MissingTranslationHandlerParams) {
-      return 'some value';
-    }
-  }
+}
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -40,18 +40,18 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
 
     TranslateModule.forRoot({
-        loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient],
-        },
-        defaultLanguage: 'en',
-        missingTranslationHandler: {
-          provide: MissingTranslationHandler,
-          useClass: MyMissingTranslationHandler,
-        },
-        useDefaultLang: true,
-      }),
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'en',
+      missingTranslationHandler: {
+        provide: MissingTranslationHandler,
+        useClass: MyMissingTranslationHandler,
+      },
+      useDefaultLang: true,
+    }),
 
     MatButtonModule,
     MatCardModule,
@@ -59,7 +59,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatMenuModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
   ],
   exports: [HeaderComponent],
   providers: [MeterService, AuthService, UIService],
