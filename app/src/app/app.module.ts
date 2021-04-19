@@ -6,7 +6,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { CoreModule, FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -19,7 +19,6 @@ import {
 import { environment } from '@src/environments/environment';
 
 import { AppRoutingModule } from '@src/app/app-routing.module';
-import { MaterialModule } from '@src/app/material.module';
 import { AuthModule } from '@src/app/auth/auth.module';
 
 import { reducers } from '@src/app/app.reducer';
@@ -31,47 +30,47 @@ import { UIService } from '@src/app/shared/ui.service';
 import { MeterService } from '@src/app/meter/meter.service';
 import { DialogComponent } from '@src/app/dialog/feature/dialog.component';
 import { MainComponent } from '@src/app/main/feature/main.component';
-import { HeaderComponent } from '@src/app/header/feature/header/header.component';
+import { HeaderComponent } from '@src/app/core/feature/header/header.component';
+import { SharedModule } from './shared/shared.module';
+import { MainModule } from './main/main.module';
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
+// export function HttpLoaderFactory(http: HttpClient) {
+//   return new TranslateHttpLoader(http);
+// }
 
-export class MyMissingTranslationHandler implements MissingTranslationHandler {
-  handle(params: MissingTranslationHandlerParams) {
-    return 'some value';
-  }
-}
+// export class MyMissingTranslationHandler implements MissingTranslationHandler {
+//   handle(params: MissingTranslationHandlerParams) {
+//     return 'some value';
+//   }
+// }
 
 @NgModule({
-  declarations: [AppComponent, DialogComponent, HeaderComponent, MainComponent],
+  declarations: [AppComponent],
   imports: [
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AuthModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule,
-    HttpClientModule,
-    MaterialModule,
+    CoreModule,
+    SharedModule,
+    MainModule,
     StoreModule.forRoot(reducers),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      defaultLanguage: 'en',
-      missingTranslationHandler: {
-        provide: MissingTranslationHandler,
-        useClass: MyMissingTranslationHandler,
-      },
-      useDefaultLang: true,
-    }),
+    // TranslateModule.forRoot({
+    //   loader: {
+    //     provide: TranslateLoader,
+    //     useFactory: HttpLoaderFactory,
+    //     deps: [HttpClient],
+    //   },
+    //   defaultLanguage: 'en',
+    //   missingTranslationHandler: {
+    //     provide: MissingTranslationHandler,
+    //     useClass: MyMissingTranslationHandler,
+    //   },
+    //   useDefaultLang: true,
+    // }),
   ],
-  providers: [MeterService, AuthService, UIService],
+  // providers: [MeterService, AuthService, UIService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
